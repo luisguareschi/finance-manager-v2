@@ -13,7 +13,6 @@ const useCurrentUser = () => {
     queryFn: async () => {
       return await getUser();
     },
-    enabled: !!localStorage.getItem("token"),
   });
   return {
     user: data,

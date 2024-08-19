@@ -5,9 +5,9 @@ import Spinner from "@/components/common/spinner";
 
 export default function Home() {
   const router = useRouter();
-  const { user, isLoading } = useCurrentUser();
+  const { user, isLoading, isError } = useCurrentUser();
 
-  if (!isLoading && !user) {
+  if ((!isLoading && !user) || isError) {
     router.replace("/login");
   }
 

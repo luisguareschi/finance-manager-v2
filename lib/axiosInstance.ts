@@ -1,4 +1,4 @@
-import baseAxios from "axios";
+import baseAxios, { AxiosError } from "axios";
 import { parseAxiosError } from "@/lib/parseAxiosError";
 
 const createAxiosInstance = () => {
@@ -30,7 +30,8 @@ const createAxiosInstance = () => {
         error.response.data.code === "token_not_valid" &&
         !originalRequest._retry &&
         localStorage.getItem("refreshToken") &&
-        localStorage.getItem("token")
+        localStorage.getItem("token") &&
+        !error.response.request.responseURL.includes("refresh")
       ) {
         originalRequest._retry = true;
         const refreshToken = localStorage.getItem("refreshToken");
@@ -47,7 +48,11 @@ const createAxiosInstance = () => {
   // use parseAxiosError to show error message
   instance.interceptors.response.use(
     (response) => response,
-    (error) => {
+    (error: AxiosError<any, any>) => {
+      if (error?.response?.status === 401 || !error?.response?.status) {
+        console.error(error);
+        return;
+      }
       parseAxiosError(error);
     },
   );
