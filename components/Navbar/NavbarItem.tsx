@@ -12,15 +12,15 @@ const NavbarItem = ({ item }: props) => {
   const isSelected = pathname.includes(item.url);
 
   const isSelectedClassName = isSelected
-    ? "text-blue-100 bg-blue-600"
-    : "text-slate-500 active:bg-blue-600 active:text-blue-100";
+    ? "text-blue-600 bg-blue-100"
+    : "text-slate-500 active:bg-blue-200 active:text-blue-700";
 
   return (
     <Link href={item.url}>
       <div className="flex flex-col text-white gap-1 justify-between items-center font-semibold text-sm">
         <button
           className={cn(
-            "flex flex-col w-fit px-7 py-1.5 rounded-full transition-all active:brightness-110",
+            "flex flex-col w-fit px-7 py-1.5 rounded-full transition-all",
             isSelectedClassName,
           )}
         >
@@ -28,7 +28,7 @@ const NavbarItem = ({ item }: props) => {
         </button>
         <p
           className={cn(
-            isSelected && "text-blue-500",
+            isSelected && "text-blue-700",
             !isSelected && "text-slate-600 font-medium",
           )}
         >
