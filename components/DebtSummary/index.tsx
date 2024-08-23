@@ -12,7 +12,7 @@ const DebtSummary = () => {
       <p className="text-lg font-medium text-slate-800">People who owe you:</p>
       {isLoading && (
         <div className="h-full flex items-center justify-center">
-          <Spinner size={36} trackColor="blue-500"/>
+          <Spinner size={36} trackColor="blue-500" />
         </div>
       )}
       {debtSummary?.debtors.map((debtor) => (
