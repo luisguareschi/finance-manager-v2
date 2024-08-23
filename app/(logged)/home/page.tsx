@@ -1,6 +1,7 @@
 "use client";
 import dayjs from "dayjs";
 import DebtSummaryCard from "@/components/DebtSummaryCard";
+import DebtSummary from "@/components/DebtSummary";
 
 const Home = () => {
   const dayOfWeek = dayjs().format("dddd");
@@ -16,10 +17,7 @@ const Home = () => {
         </h2>
       </div>
       <DebtSummaryCard />
-      <p className="text-lg font-medium text-slate-800">People who owe you:</p>
-      <div>
-        <p className="text-slate-600">No one owes you money</p>
-      </div>
+      <DebtSummary />
     </div>
   );
 };
