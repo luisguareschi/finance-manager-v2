@@ -49,7 +49,7 @@ const LoginPage = () => {
   };
 
   return (
-    <div className="flex flex-col h-dvh gap-10 p-6 justify-center relative">
+    <div className="flex flex-col h-dvh gap-10 p-6 justify-center relative w-full max-w-[600px]">
       <header className="flex flex-col gap-4">
         <h1 className="text-5xl font-bold text-slate-700">
           {showLogin && (
@@ -121,7 +121,7 @@ const LoginPage = () => {
           </>
         )}
       </div>
-      <p className="text-center text-slate-700 absolute bottom-10 left-0 w-screen">
+      <p className="text-center text-slate-700 absolute bottom-10 left-0 w-full">
         Don&apos;t have an account?{" "}
         <button
           className="text-blue-500 font-semibold focus:underline"
