@@ -9,7 +9,7 @@ import Spinner from "@/components/common/spinner";
 const HistoryPage = () => {
   const searchParams = useSearchParams();
   const debtorId = searchParams.get("debtorId");
-  const { debts, isLoading: loadingDebts } = useDebts({ debtorId });
+  const { debts, isLoading: loadingDebts, totalDebt } = useDebts({ debtorId });
 
   return (
     <div className="w-full h-full flex flex-col gap-5">
@@ -19,7 +19,7 @@ const HistoryPage = () => {
       <section>
         <p className="text-slate-600">Total Debt</p>
         <p className="font-semibold text-slate-800 text-2xl">
-          {formatCurrency(300)}
+          {formatCurrency(totalDebt)}
         </p>
       </section>
       <p className="text-lg font-medium text-slate-800">Recent Activity</p>

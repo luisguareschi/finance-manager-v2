@@ -20,7 +20,17 @@ const useDebts = ({ debtorId }: props) => {
       return data;
     },
   });
-  return { debts: data, ...rest };
+
+  let totalDebt = 0;
+
+  if (data) {
+    totalDebt = data.reduce(
+      (acc, debt) => acc + parseFloat(String(debt.amount)),
+      0,
+    );
+  }
+
+  return { debts: data, totalDebt, ...rest };
 };
 
 export default useDebts;
