@@ -14,5 +14,10 @@ export const parseAxiosError = (error: any) => {
       message = error.response.data[title];
     }
   }
+
+  // Remove _ from title and capitalize first letter
+  title = title.replace(/_/g, " ");
+  title = title.charAt(0).toUpperCase() + title.slice(1);
+
   toast.error(`${title}: ${message}`);
 };
