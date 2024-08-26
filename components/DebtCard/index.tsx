@@ -26,6 +26,7 @@ const DebtCard = ({
         "bg-white rounded-xl w-full p-3 flex gap-5",
         onClick && "transition-all active:brightness-95",
       )}
+      onClick={onClick}
     >
       <div
         className={cn(
@@ -39,11 +40,11 @@ const DebtCard = ({
       </div>
       <div className="flex flex-col justify-center gap-1 w-full">
         <p className="text-slate-800 font-medium">{title}</p>
-        <p className="text-slate-600">{subtitle}</p>
+        <p className="text-slate-600 line-clamp-1">{subtitle}</p>
       </div>
       <div className="flex flex-col justify-center gap-1 items-end">
         <p className="text-slate-800 font-medium">{amount}</p>
-        <p className="text-slate-600">{amountSubtitle}</p>
+        <p className="text-slate-600 line-clamp-1 w-max">{amountSubtitle}</p>
       </div>
     </div>
   );

@@ -6,7 +6,7 @@ export const routes = [
     url: "/home",
     icon: {
       selected: <Home filled />,
-      unselected: <Home filled />,
+      unselected: <Home />,
     },
   },
   {

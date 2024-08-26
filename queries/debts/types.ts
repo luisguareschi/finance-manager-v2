@@ -8,3 +8,18 @@ export interface IDebtSummary {
     last_updated: string;
   }[];
 }
+
+export interface IDebtor {
+  id: number;
+  name: string;
+  created_by: number;
+}
+
+export interface IDebt {
+  id: number;
+  user: number;
+  description: string;
+  amount: number;
+  debtor: IDebtor;
+  created: string;
+}

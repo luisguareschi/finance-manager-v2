@@ -3,8 +3,10 @@ import DebtCard from "@/components/DebtCard";
 import dayjs from "dayjs";
 import { formatCurrency } from "@/lib/fomatCurrency";
 import Spinner from "@/components/common/spinner";
+import { useRouter } from "next/navigation";
 
 const DebtSummary = () => {
+  const router = useRouter();
   const { debtSummary, isLoading } = useDebtSummary();
 
   return (
@@ -22,7 +24,7 @@ const DebtSummary = () => {
           amountSubtitle="Debt"
           key={debtor.id}
           subtitle={`Latest: ${dayjs(debtor.last_updated).format("DD-MM-YYYY")}`}
-          onClick={() => console.log("clicked")}
+          onClick={() => router.push(`history?debtorId=${debtor.id}`)}
         />
       ))}
       {!debtSummary?.debtors.length && !isLoading && (
