@@ -1,20 +1,38 @@
 "use client";
-import { useSearchParams } from "next/navigation";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { formatCurrency } from "@/lib/fomatCurrency";
 import useDebts from "@/queries/debts/useDebts";
 import DebtCard from "@/components/DebtCard";
 import dayjs from "dayjs";
 import Spinner from "@/components/common/spinner";
+import DebtorSelect from "@/components/HistoryPage/DebtorSelect";
+import { useEffect, useState } from "react";
 
 const HistoryPage = () => {
+  const pathname = usePathname();
+  const router = useRouter();
   const searchParams = useSearchParams();
   const debtorId = searchParams.get("debtorId");
   const { debts, isLoading: loadingDebts, totalDebt } = useDebts({ debtorId });
+  const [selectedDebtorId, setSelectedDebtorId] = useState(debtorId);
+
+  useEffect(() => {
+    // add debtorId to the URL
+    if (selectedDebtorId) {
+      router.push(`${pathname}?debtorId=${selectedDebtorId}`);
+    } else {
+      router.push(pathname);
+    }
+  }, [selectedDebtorId]);
 
   return (
     <div className="w-full h-full flex flex-col gap-5">
-      <header className="w-full flex flex-col justify-center items-center pt-5">
-        <h1 className="font-semibold text-lg text-slate-800">Transactions</h1>
+      <header className="w-full flex flex-col justify-center items-center pt-5 gap-2">
+        <h1 className="font-semibold text-xl text-slate-800">Transactions</h1>
+        <DebtorSelect
+          debtorId={selectedDebtorId}
+          onChange={(val) => setSelectedDebtorId(val)}
+        />
       </header>
       <section className="space-y-1">
         <p className="text-slate-600 text-lg">Total Debt</p>
@@ -24,7 +42,7 @@ const HistoryPage = () => {
           </p>
         )}
         {loadingDebts && (
-          <div className="h-[32px] w-36 bg-slate-500 animate-pulse rounded" />
+          <div className="h-[32px] w-36 bg-slate-300 animate-pulse rounded" />
         )}
       </section>
       <p className="text-lg font-medium text-slate-800">Recent Activity</p>
