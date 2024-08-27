@@ -1,5 +1,10 @@
 import { stringToAcceptedColor } from "@/lib/stringToAcceptedColor";
 import { cn } from "@/lib/utils";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
 
 interface props {
   title: string;
@@ -40,7 +45,20 @@ const DebtCard = ({
       </div>
       <div className="flex flex-col justify-center gap-1 w-full">
         <p className="text-slate-800 font-medium">{title}</p>
-        <p className="text-slate-600 line-clamp-1">{subtitle}</p>
+        {!onClick && (
+          <Popover>
+            <PopoverTrigger className="flex justify-start items-start">
+              <p className="text-slate-600 line-clamp-1">{subtitle}</p>
+            </PopoverTrigger>
+            <PopoverContent
+              className="w-fit border p-2 break-words text-wrap h-full max-w-[40vw]"
+              align="start"
+            >
+              <p className="text-slate-600 text-sm">{subtitle}</p>
+            </PopoverContent>
+          </Popover>
+        )}
+        {onClick && <p className="text-slate-600 line-clamp-1">{subtitle}</p>}
       </div>
       <div className="flex flex-col justify-center gap-1 items-end">
         <p className="text-slate-800 font-medium">{amount}</p>

@@ -17,7 +17,7 @@ export default function Home() {
 
   return (
     <div className="h-screen w-full flex items-center justify-center">
-      <Spinner size={40} baseColor="blue-500" trackColor="white" />
+      <Spinner size={40} trackColor="blue-500" />
     </div>
   );
 }

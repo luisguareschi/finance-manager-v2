@@ -29,7 +29,7 @@ const Spinner = ({ size, baseColor, trackColor }: props) => {
           strokeLinejoin="round"
           className={
             baseColor === "transparent"
-              ? "text-white opacity-75"
+              ? "text-black opacity-5"
               : `text-${baseColor}`
           }
         ></path>
