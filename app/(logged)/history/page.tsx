@@ -7,6 +7,8 @@ import dayjs from "dayjs";
 import Spinner from "@/components/common/spinner";
 import DebtorSelect from "@/components/HistoryPage/DebtorSelect";
 import { useEffect, useState } from "react";
+import useDeleteDebt from "@/queries/debts/useDeleteDebt";
+import { AnimatePresence } from "framer-motion";
 
 const HistoryPage = () => {
   const pathname = usePathname();
@@ -15,6 +17,7 @@ const HistoryPage = () => {
   const debtorId = searchParams.get("debtorId");
   const { debts, isLoading: loadingDebts, totalDebt } = useDebts({ debtorId });
   const [selectedDebtorId, setSelectedDebtorId] = useState(debtorId);
+  const { mutate: deleteDebt } = useDeleteDebt();
 
   useEffect(() => {
     // add debtorId to the URL
@@ -46,15 +49,18 @@ const HistoryPage = () => {
         )}
       </section>
       <p className="text-lg font-medium text-slate-800">Recent Activity</p>
-      {debts?.map((debt) => (
-        <DebtCard
-          key={debt.id}
-          title={debt.debtor.name}
-          amount={formatCurrency(debt.amount)}
-          subtitle={debt.description}
-          amountSubtitle={dayjs(debt.created).format("DD-MM-YY")}
-        />
-      ))}
+      <AnimatePresence>
+        {debts?.map((debt) => (
+          <DebtCard
+            key={debt.id}
+            title={debt.debtor.name}
+            amount={formatCurrency(debt.amount)}
+            subtitle={debt.description}
+            amountSubtitle={dayjs(debt.created).format("DD-MM-YY")}
+            onSwipeRightToDelete={() => deleteDebt(debt.id)}
+          />
+        ))}
+      </AnimatePresence>
       {!debts && loadingDebts && (
         <div className="h-full flex justify-center items-center">
           <Spinner size={36} trackColor="blue-500" />
