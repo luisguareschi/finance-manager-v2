@@ -39,8 +39,8 @@ const DebtorSelect = ({ debtorId, onChange }: props) => {
         className={cn(
           "w-[180px] border-0 bg-transparent flex justify-center items-center gap-2 text-lg " +
             "font-medium text-slate-600 pl-4 focus:outline-none focus:ring-0 focus:ring-transparent " +
-            "focus:ring-offset-transparent focus:border-2 focus:bg-slate-50 transition-colors open:bg-white",
-          open ? "bg-slate-50 border-2" : "",
+            "focus:ring-offset-transparent focus:border-2 focus:bg-white transition-colors",
+          open ? "bg-white border-2" : "",
         )}
       >
         <SelectValue placeholder="Debtor" />

@@ -66,6 +66,9 @@ const HistoryPage = () => {
           <Spinner size={36} trackColor="blue-500" />
         </div>
       )}
+      {!debts?.length && !loadingDebts && (
+        <p className="text-slate-600">No transactions found</p>
+      )}
     </div>
   );
 };
