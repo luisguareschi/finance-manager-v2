@@ -23,3 +23,10 @@ export interface IDebt {
   debtor: IDebtor;
   created: string;
 }
+
+export interface ICreateDebt {
+  description: string;
+  amount: number | string;
+  debtor: string | number;
+  created: Date;
+}

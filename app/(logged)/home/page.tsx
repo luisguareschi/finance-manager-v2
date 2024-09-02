@@ -2,6 +2,7 @@
 import dayjs from "dayjs";
 import DebtSummaryCard from "@/components/DebtSummaryCard";
 import DebtSummary from "@/components/DebtSummary";
+import AddDebtButton from "@/components/AddDebtButton";
 
 const Home = () => {
   const dayOfWeek = dayjs().format("dddd");
@@ -18,6 +19,7 @@ const Home = () => {
       </div>
       <DebtSummaryCard />
       <DebtSummary />
+      <AddDebtButton />
     </div>
   );
 };

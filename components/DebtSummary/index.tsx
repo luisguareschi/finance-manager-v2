@@ -17,16 +17,19 @@ const DebtSummary = () => {
           <Spinner size={36} trackColor="blue-500" />
         </div>
       )}
-      {debtSummary?.debtors.map((debtor) => (
-        <DebtCard
-          title={debtor.name}
-          amount={formatCurrency(debtor.total)}
-          amountSubtitle="Debt"
-          key={debtor.id}
-          subtitle={`Latest: ${dayjs(debtor.last_updated).format("DD-MM-YYYY")}`}
-          onClick={() => router.push(`history?debtorId=${debtor.id}`)}
-        />
-      ))}
+      {debtSummary?.debtors.map((debtor) => {
+        if (debtor.total === 0) return null;
+        return (
+          <DebtCard
+            title={debtor.name}
+            amount={formatCurrency(debtor.total)}
+            amountSubtitle="Debt"
+            key={debtor.id}
+            subtitle={`Latest: ${dayjs(debtor.last_updated).format("DD-MM-YYYY")}`}
+            onClick={() => router.push(`history?debtorId=${debtor.id}`)}
+          />
+        );
+      })}
       {!debtSummary?.debtors.length && !isLoading && (
         <p className="text-slate-600">No one owes you money</p>
       )}

@@ -5,7 +5,7 @@ import { IDebtSummary } from "@/queries/debts/types";
 
 const useDebtSummary = () => {
   const { data, ...rest } = useQuery({
-    queryKey: [QUERYKEYS.me, QUERYKEYS.debtsSummary],
+    queryKey: [QUERYKEYS.debtsSummary],
     queryFn: async (): Promise<IDebtSummary> => {
       const { data } = await axios.get("/debts/summary");
       return data;

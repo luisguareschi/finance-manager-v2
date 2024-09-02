@@ -10,7 +10,7 @@ const MenuBar = () => {
   return (
     <div
       className={cn(
-        "bg-slate-100 w-full p-3 grid items-center justify-center justify-items-center border-t-2 border-slate-200 border-opacity-50 grid-cols-4",
+        "bg-slate-50 w-full p-3 grid items-center justify-center justify-items-center grid-cols-4",
         platform === "ios" && "pb-10",
       )}
     >

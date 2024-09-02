@@ -28,8 +28,11 @@ const useDeleteDebt = () => {
     onSettled: async () => {
       await queryClient.invalidateQueries({ queryKey: [QUERYKEYS.debts] });
     },
-    onSuccess: () => {
+    onSuccess: async () => {
       toast.success("Debt deleted successfully");
+      await queryClient.invalidateQueries({
+        queryKey: [QUERYKEYS.debtsSummary],
+      });
     },
   });
 };
