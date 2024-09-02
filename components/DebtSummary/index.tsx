@@ -10,7 +10,7 @@ const DebtSummary = () => {
   const { debtSummary, isLoading } = useDebtSummary();
 
   return (
-    <div className="flex flex-col gap-5 h-full">
+    <div className="flex flex-col gap-5 h-full pb-32">
       <p className="text-lg font-medium text-slate-800">People who owe you:</p>
       {isLoading && (
         <div className="h-full flex items-center justify-center">
