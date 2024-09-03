@@ -28,7 +28,14 @@ const AddDebtButton = () => {
 
   const handleCreate = () => {
     createDebt(debtForm);
+    setDebtForm(defaultDebtForm);
   };
+
+  const canCreate =
+    debtForm.debtor &&
+    debtForm.amount &&
+    debtForm.created &&
+    debtForm.description;
 
   return (
     <Drawer>
@@ -83,7 +90,13 @@ const AddDebtButton = () => {
             <Button variant="outline" className="w-full">
               Cancel
             </Button>
-            <Button onClick={handleCreate}>Submit</Button>
+            <Button
+              onClick={handleCreate}
+              disabled={!canCreate}
+              className="border-2 border-blue-500"
+            >
+              Submit
+            </Button>
           </DrawerClose>
         </DrawerFooter>
       </DrawerContent>
