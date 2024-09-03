@@ -62,6 +62,7 @@ const HistoryPage = () => {
               onSwipeRightToDelete={() => deleteDebt(debt.id)}
             />
           ))}
+          {debts && <div className="w-full min-h-28" />}
         </AnimatePresence>
         {!debts && loadingDebts && (
           <div className="h-full flex justify-center items-center">
