@@ -3,4 +3,5 @@ export const QUERYKEYS = {
   debtsSummary: "debtsSummary",
   debts: "debts",
   debtors: "debtors",
+  notes: "notes",
 };
