@@ -15,18 +15,16 @@ const NotesPage = () => {
         <h1 className="font-semibold text-xl text-slate-800">Notes</h1>
       </header>
       <Button onClick={() => createNote()}>Create Note</Button>
-      <motion.div className="flex flex-col gap-5">
-        <AnimatePresence>
-          {notes?.map((note) => (
-            <NoteCard
-              title={note.title}
-              content={note.content}
-              key={note.id}
-              noteId={note.id}
-            />
-          ))}
-        </AnimatePresence>
-      </motion.div>
+      <AnimatePresence>
+        {notes?.map((note) => (
+          <NoteCard
+            title={note.title}
+            content={note.content}
+            key={note.id}
+            noteId={note.id}
+          />
+        ))}
+      </AnimatePresence>
     </div>
   );
 };
