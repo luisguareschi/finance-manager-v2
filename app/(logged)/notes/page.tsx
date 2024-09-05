@@ -12,7 +12,7 @@ const NotesPage = () => {
   const { mutate: createNote } = useCreateNote();
   return (
     <div className="h-full w-full flex flex-col gap-5">
-      <header className="flex justify-center items-center pt-5">
+      <header className="flex justify-center items-center py-5">
         <h1 className="font-semibold text-xl text-slate-800">Notes</h1>
       </header>
       <AnimatePresence>
