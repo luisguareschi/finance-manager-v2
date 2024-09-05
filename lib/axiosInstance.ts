@@ -27,6 +27,13 @@ const createAxiosInstance = () => {
       const originalRequest = error.config;
       if (
         error.response.status === 401 &&
+        !localStorage.getItem("refreshToken") &&
+        !localStorage.getItem("token")
+      ) {
+        window.location.href = "/login";
+      }
+      if (
+        error.response.status === 401 &&
         error.response.data.code === "token_not_valid" &&
         !originalRequest._retry &&
         localStorage.getItem("refreshToken") &&
@@ -40,6 +47,14 @@ const createAxiosInstance = () => {
         });
         localStorage.setItem("token", data.access);
         return instance(originalRequest);
+      } else if (
+        error.response.status === 401 &&
+        error.response.data.code === "token_not_valid" &&
+        error.response.request.responseURL.includes("refresh")
+      ) {
+        localStorage.removeItem("token");
+        localStorage.removeItem("refreshToken");
+        window.location.href = "/login";
       }
       return Promise.reject(error);
     },
