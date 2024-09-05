@@ -43,7 +43,7 @@ const NoteCard = ({ title, content, noteId }: props) => {
       exit={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       className={cn(
-        "flex flex-col gap-3 p-5 relative rounded-xl border border-slate-200 shadow-sm bg-white transition-all",
+        "flex flex-col gap-3 p-5 relative rounded-xl border border-slate-200 shadow-sm bg-white transition-colors",
         isFocused && "ring-1 ring-slate-300",
       )}
     >
