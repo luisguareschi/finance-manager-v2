@@ -5,6 +5,7 @@ import { CloseSquare } from "react-iconly";
 import { cn } from "@/lib/utils";
 import useDeleteNote from "@/queries/notes/useDeleteNote";
 import useUpdateNote from "@/queries/notes/useUpdateNote";
+import debounce from "lodash/debounce";
 
 interface props {
   title?: string;
@@ -26,14 +27,21 @@ const NoteCard = ({ title, content, noteId }: props) => {
     deleteNote(noteId);
   };
 
+  const debouncedUpdateNote = useRef(
+    debounce((updatedData) => {
+      if (!noteId) return;
+      updateNote({
+        title: updatedData.title,
+        content: updatedData.content,
+        noteId,
+      });
+    }, 500),
+  ).current;
+
   useEffect(() => {
     if (!noteId) return;
-    if (!noteData.title || !noteData.content) return;
-    updateNote({
-      title: noteData.title,
-      content: noteData.content,
-      noteId,
-    });
+    if (!noteData.title && !noteData.content) return;
+    debouncedUpdateNote(noteData);
   }, [noteData.title, noteData.content]);
 
   return (
