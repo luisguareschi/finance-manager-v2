@@ -1,14 +1,15 @@
 "use client";
 import useNotes from "@/queries/notes/useNotes";
 import NoteCard from "@/components/NotesPage/NoteCard";
-import { AnimatePresence } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import useCreateNote from "@/queries/notes/useCreateNote";
-import { PaperPlus } from "react-iconly";
+import { PaperPlus, Document } from "react-iconly";
 import React from "react";
 import { FloatingButton } from "@/components/ui/floatingButton";
+import Spinner from "@/components/common/spinner";
 
 const NotesPage = () => {
-  const { notes } = useNotes();
+  const { notes, isLoading: loadingNotes } = useNotes();
   const { mutate: createNote } = useCreateNote();
   return (
     <div className="h-full w-full flex flex-col gap-5">
@@ -24,8 +25,24 @@ const NotesPage = () => {
             noteId={note.id}
           />
         ))}
+        {!notes?.length && !loadingNotes && (
+          <motion.div
+            className="h-full flex flex-col justify-center items-center gap-2"
+            layout
+          >
+            <div className="text-slate-500">
+              <Document size="xlarge" />
+            </div>
+            <p className="text-slate-600">No notes yet</p>
+          </motion.div>
+        )}
       </AnimatePresence>
-      {notes && <div className="w-full min-h-28" />}
+      {!!notes?.length && <div className="w-full min-h-28" />}
+      {!notes && loadingNotes && (
+        <div className="h-full flex justify-center items-center">
+          <Spinner size={36} trackColor="blue-500" />
+        </div>
+      )}
       <FloatingButton onClick={() => createNote()}>
         <PaperPlus size="large" filled />
       </FloatingButton>

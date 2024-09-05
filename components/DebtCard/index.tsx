@@ -85,7 +85,7 @@ const DebtCard = ({
       )}
       <motion.div
         className={cn(
-          "bg-white rounded-xl w-full p-3 flex gap-5",
+          "bg-white rounded-xl w-full p-3 flex gap-5 border border-slate-200 shadow-sm",
           onClick && "transition-all active:brightness-95",
           draggable && "relative overflow-clip z-10",
         )}
