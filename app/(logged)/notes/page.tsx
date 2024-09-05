@@ -2,9 +2,10 @@
 import useNotes from "@/queries/notes/useNotes";
 import NoteCard from "@/components/NotesPage/NoteCard";
 import { AnimatePresence } from "framer-motion";
-import { Button } from "@/components/ui/button";
 import useCreateNote from "@/queries/notes/useCreateNote";
-import { motion } from "framer-motion";
+import { PaperPlus } from "react-iconly";
+import React from "react";
+import { FloatingButton } from "@/components/ui/floatingButton";
 
 const NotesPage = () => {
   const { notes } = useNotes();
@@ -14,7 +15,6 @@ const NotesPage = () => {
       <header className="flex justify-center items-center pt-5">
         <h1 className="font-semibold text-xl text-slate-800">Notes</h1>
       </header>
-      <Button onClick={() => createNote()}>Create Note</Button>
       <AnimatePresence>
         {notes?.map((note) => (
           <NoteCard
@@ -25,6 +25,10 @@ const NotesPage = () => {
           />
         ))}
       </AnimatePresence>
+      {notes && <div className="w-full min-h-28" />}
+      <FloatingButton onClick={() => createNote()}>
+        <PaperPlus size="large" filled />
+      </FloatingButton>
     </div>
   );
 };

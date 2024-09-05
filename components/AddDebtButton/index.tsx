@@ -14,6 +14,7 @@ import Input from "@/components/common/input";
 import Datepicker from "@/components/common/datepicker";
 import DebtorAutocomplete from "@/components/common/DebtorAutocomplete";
 import useCreateDebt from "@/queries/debts/useCreateDebt";
+import { FloatingButton } from "@/components/ui/floatingButton";
 
 const defaultDebtForm = {
   debtor: "",
@@ -40,14 +41,9 @@ const AddDebtButton = () => {
   return (
     <Drawer>
       <DrawerTrigger asChild>
-        <button
-          className="fixed bottom-28 right-5 bg-blue-500 z-10
-        p-4 rounded-lg shadow shadow-blue-400 active:bg-blue-600 transition-colors"
-        >
-          <p className="text-white text-4xl">
-            <FiPlus />
-          </p>
-        </button>
+        <FloatingButton>
+          <FiPlus />
+        </FloatingButton>
       </DrawerTrigger>
       <DrawerContent className="px-5">
         <DrawerHeader className="mb-5">
