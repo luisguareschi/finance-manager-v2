@@ -10,6 +10,7 @@ import { useEffect, useState } from "react";
 import useDeleteDebt from "@/queries/debts/useDeleteDebt";
 import { AnimatePresence } from "framer-motion";
 import AddDebtButton from "@/components/AddDebtButton";
+import { Alert } from "@/components/ui/alert";
 
 const HistoryPage = () => {
   const pathname = usePathname();
@@ -18,6 +19,7 @@ const HistoryPage = () => {
   const debtorId = searchParams.get("debtorId");
   const { debts, isLoading: loadingDebts, totalDebt } = useDebts({ debtorId });
   const [selectedDebtorId, setSelectedDebtorId] = useState(debtorId);
+  const [deleteId, setDeleteId] = useState<number | null>(null);
   const { mutate: deleteDebt } = useDeleteDebt();
 
   useEffect(() => {
@@ -59,7 +61,7 @@ const HistoryPage = () => {
               amount={formatCurrency(debt.amount)}
               subtitle={debt.description}
               amountSubtitle={dayjs(debt.created).format("DD-MM-YY")}
-              onSwipeRightToDelete={() => deleteDebt(debt.id)}
+              onSwipeRightToDelete={() => setDeleteId(debt.id)}
             />
           ))}
           {debts && <div className="w-full min-h-28" />}
@@ -73,6 +75,16 @@ const HistoryPage = () => {
           <p className="text-slate-600">No transactions found</p>
         )}
       </div>
+      <Alert
+        title="Delete"
+        open={!!deleteId}
+        onAccept={() => {
+          if (!deleteId) return;
+          deleteDebt(deleteId);
+        }}
+        onClose={() => setDeleteId(null)}
+        message="Are you sure you want to delete this debt?"
+      />
       <AddDebtButton />
     </>
   );
