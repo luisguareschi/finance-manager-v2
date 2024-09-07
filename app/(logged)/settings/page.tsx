@@ -1,8 +1,8 @@
 "use client";
 import React from "react";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
 import { logout } from "@/lib/logout";
+import { DeleteDebtors } from "@/components/SettingsPage/deleteDebtors";
 
 const SettingsPage = () => {
   return (
@@ -10,9 +10,7 @@ const SettingsPage = () => {
       <header className="flex justify-start items-center">
         <h1 className="font-semibold text-xl text-slate-800">Settings</h1>
       </header>
-      <Card>
-        <div className="p-5">More settings coming soon...</div>
-      </Card>
+      <DeleteDebtors />
       <Button
         className="mt-auto"
         variant="primaryLight"
