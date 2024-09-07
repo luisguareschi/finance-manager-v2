@@ -64,7 +64,7 @@ const HistoryPage = () => {
               onSwipeRightToDelete={() => setDeleteId(debt.id)}
             />
           ))}
-          {debts && <div className="w-full min-h-28" />}
+          {debts?.length && <div className="w-full min-h-28" />}
         </AnimatePresence>
         {!debts && loadingDebts && (
           <div className="h-full flex justify-center items-center">
@@ -83,7 +83,8 @@ const HistoryPage = () => {
           deleteDebt(deleteId);
         }}
         onClose={() => setDeleteId(null)}
-        message="Are you sure you want to delete this debt?"
+        message="Are you sure you want to delete this debt? This action cannot be undone."
+        acceptText="Delete"
       />
       <AddDebtButton />
     </>

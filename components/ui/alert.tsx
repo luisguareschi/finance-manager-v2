@@ -44,10 +44,14 @@ export const Alert = ({
               <h1 className="text-xl font-semibold text-slate-800">{title}</h1>
               {message && <p className="text-slate-600">{message}</p>}
               <div className="flex gap-2 justify-end mt-2">
-                <Button className="p-3" variant="secondary" onClick={onClose}>
+                <Button
+                  className="p-3 px-4"
+                  variant="secondary"
+                  onClick={onClose}
+                >
                   Cancel
                 </Button>
-                <Button onClick={handleSubmit} className="p-3">
+                <Button onClick={handleSubmit} className="p-3 px-4">
                   {acceptText}
                 </Button>
               </div>
