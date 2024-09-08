@@ -10,7 +10,9 @@ export const viewport: Viewport = {
 const LoggedLayout = ({ children }: { children: ReactNode }) => {
   return (
     <div className="h-screen w-full bg-slate-50 flex flex-col">
-      <div className="flex flex-1 overflow-y-auto p-5 hide-scrollbar">{children}</div>
+      <div className="flex flex-1 overflow-y-auto p-5 hide-scrollbar">
+        {children}
+      </div>
       <Navbar />
     </div>
   );
