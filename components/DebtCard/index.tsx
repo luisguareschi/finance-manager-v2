@@ -125,7 +125,7 @@ const DebtCard = ({
           {onClick && <p className="text-slate-600 line-clamp-1">{subtitle}</p>}
         </div>
         <div className="flex flex-col justify-center gap-1 items-end">
-          <p className="text-slate-800 font-medium">{amount}</p>
+          <p className="text-slate-800 font-medium min-w-max">{amount}</p>
           <p className="text-slate-600 line-clamp-1 w-max">{amountSubtitle}</p>
         </div>
       </motion.div>
