@@ -6,7 +6,7 @@ import DebtCard from "@/components/DebtCard";
 import dayjs from "dayjs";
 import Spinner from "@/components/common/spinner";
 import DebtorSelect from "@/components/HistoryPage/DebtorSelect";
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import useDeleteDebt from "@/queries/debts/useDeleteDebt";
 import { AnimatePresence } from "framer-motion";
 import AddDebtButton from "@/components/AddDebtButton";
@@ -91,4 +91,12 @@ const HistoryPage = () => {
   );
 };
 
-export default HistoryPage;
+const SuspenseWrapper = () => {
+  return (
+    <Suspense>
+      <HistoryPage />
+    </Suspense>
+  );
+};
+
+export default SuspenseWrapper;
