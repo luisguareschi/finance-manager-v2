@@ -49,7 +49,7 @@ const NoteCard = ({ title, content, noteId }: props) => {
   return (
     <>
       <motion.div
-        layout
+        layout={!isFocused}
         initial={{ opacity: 0 }}
         exit={{ opacity: 0 }}
         animate={{ opacity: 1 }}

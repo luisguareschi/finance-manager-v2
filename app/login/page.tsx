@@ -114,6 +114,7 @@ const LoginPage = () => {
             <Button
               variant="outline"
               className="text-slate-600 border-slate-200 active:bg-slate-50"
+              onClick={() => alert("Coming soon")}
             >
               <FcGoogle className="size-6" />
               Google
