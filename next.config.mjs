@@ -1,4 +1,15 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {};
+import withPWA from "next-pwa";
+
+const nextConfig = {
+  ...withPWA({
+    dest: "public",
+    register: true,
+    skipWaiting: true,
+  }),
+  env: {
+    NEXT_PUBLIC_API_URL: process.env.NEXT_PUBLIC_API_URL,
+  },
+};
 
 export default nextConfig;

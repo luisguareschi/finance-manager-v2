@@ -12,6 +12,7 @@ const font = Poppins({
 export const metadata: Metadata = {
   title: "Finance Manager",
   description: "A simple finance manager for keeping track of your expenses.",
+  manifest: "./manifest.json",
 };
 
 export default function RootLayout({
