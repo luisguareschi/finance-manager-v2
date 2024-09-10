@@ -105,8 +105,12 @@ const Autocomplete = ({
               {options.map((option) => (
                 <CommandItem
                   key={option.value}
-                  value={option.value}
-                  onSelect={(currentValue) => {
+                  value={option.label}
+                  onSelect={(currentLabel) => {
+                    const currentValue = options.find(
+                      (option) => option.label === currentLabel,
+                    )?.value;
+                    if (!currentValue) return;
                     setValue(currentValue === value ? "" : currentValue);
                     setOpen(false);
                   }}
