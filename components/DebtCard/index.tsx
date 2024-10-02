@@ -112,7 +112,9 @@ const DebtCard = ({
           {!onClick && (
             <Popover>
               <PopoverTrigger className="flex justify-start items-start">
-                <p className="text-slate-600 line-clamp-1">{subtitle}</p>
+                <p className="text-slate-600 line-clamp-1 text-left">
+                  {subtitle}
+                </p>
               </PopoverTrigger>
               <PopoverContent
                 className="w-fit border p-2 break-words text-wrap h-full max-w-[40vw]"
